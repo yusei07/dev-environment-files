@@ -1,16 +1,19 @@
 ![preview-1.png](images/preview-1.png)
+
 ![preview-2.png](images/preview-2.png)
-## Yu's dotfiles
----
-Note: Don't blindly use the setting!
-#### Contents
----
+# Yu's dotfiles
+
+Note: Don't blindly use the setting! Make sure you understand what it does.
+
+## Contents
+
 - Vim (NeoVim)
 - Tmux 
 - Git
 - Fish
-#### Essentials
----
+
+## Essentials
+
 - [iTerm2](https://iterm2.com/)
 - [Nerd Font](https://www.nerdfonts.com/) - Hack
 - [Nvim](https://neovim.io/) (>= 0.8)
@@ -22,12 +25,12 @@ If you're on mac, you can install iTerm2, Neovim, and fish using [homebrew](http
 <pre>brew install neovim</pre>
 <pre>brew install fish</pre>
 
-#### Neovim setup
+## Neovim setup
 - [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) - Plugin manager for Nvim
 - [svrana/neosolarized.nvim](https://github.com/svrana/neosolarized.nvim) - Truecolor, solarized dark colorscheme
 - [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim) - Neovim statusline
 
-#### Shell setup
+## Shell setup
 
 - [Fish shell](https://fishshell.com/)
 - [Fisher](https://github.com/jorgebucaran/fisher) - Plugin manager 
@@ -37,10 +40,7 @@ If you're on mac, you can install iTerm2, Neovim, and fish using [homebrew](http
 - [Exa](https://the.exa.website/) - `ls` replacement
 - [peco](https://github.com/peco/peco) - Interactive filtering
 
----
+## Resources
 
 - Dotfiles was managed using [GNU Stow](https://www.gnu.org/software/stow/). 
 - Creds to [@devaslife](https://www.youtube.com/@devaslife) for the configs!
-
-
-
