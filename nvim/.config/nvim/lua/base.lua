@@ -19,6 +19,7 @@ vim.opt.shell = 'fish'
 vim.opt.backupskip = '/tmp/*,/private/tmp/*'
 -- vim.opt.incommand = 'split' (error code) 
 vim.opt.ignorecase = true
+vim.opt.smartcase = true 
 vim.opt.smarttab = true 
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
@@ -43,5 +44,18 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
 
--- Rnu 
 vim.opt.relativenumber = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+vim.opt.swapfile = false
+vim.opt.autoread = true
+vim.bo.autoread = true
+
+vim.opt.signcolumn = 'yes'
+vim.opt.list = true
+
+vim.opt.cursorline = true
+vim.opt.termguicolors = true

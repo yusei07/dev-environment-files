@@ -2,33 +2,56 @@ local keymap = vim.keymap
 
 keymap.set('n', 'x', '"_x')
 
--- Increment/decrement
-keymap.set('n', '+', '<C-a>')
-keymap.set('n', '-', '<C-x>')
+-- increment/decrement
+keymap.set('n', '+', '<c-a>')
+keymap.set('n', '-', '<c-x>')
 
--- Delete a word backwards
+-- delete a word backwards
 keymap.set('n', 'dw', 'vb"_d')
 
--- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G')
+-- select all
+keymap.set('n', '<C-l>', 'ggVG')
 
--- Save with root permission (not working for now)
---vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
+-- save with root permission (not working for now)
+--vim.api.nvim_create_user_command('w', 'w !sudo tee > /dev/null %', {})
 
--- New tab
-keymap.set('n', 'te', ':tabedit')
--- Split window
-keymap.set('n', 'ss', ':split<Return><C-w>w')
-keymap.set('n', 'sv', ':vsplit<Return><C-w>w')
--- Move window
-keymap.set('n', '<Space>', '<C-w>w')
-keymap.set('', 'sh', '<C-w>h')
-keymap.set('', 'sk', '<C-w>k')
-keymap.set('', 'sj', '<C-w>j')
-keymap.set('', 'sl', '<C-w>l')
+-- new tab
+keymap.set('n', 'te', ':tabedit<return>', { silent = true })
 
--- Resize window
-keymap.set('n', '<C-w><left>', '<C-w><')
-keymap.set('n', '<C-w><right>', '<C-w>>')
-keymap.set('n', '<C-w><up>', '<C-w>+')
-keymap.set('n', '<C-w><down>', '<C-w>-')
+-- split window
+keymap.set('n', 'ss', ':split<return><c-w>w')
+keymap.set('n', 'sv', ':vsplit<return><c-w>w')
+
+-- move window
+keymap.set('n', '<space>', '<c-w>w')
+keymap.set('', 'sh', '<c-w>h')
+keymap.set('', 'sk', '<c-w>k')
+keymap.set('', 'sj', '<c-w>j')
+keymap.set('', 'sl', '<c-w>l')
+
+-- resize window
+keymap.set('n', '<c-w><left>', '<c-w><')
+keymap.set('n', '<c-w><right>', '<c-w>>')
+keymap.set('n', '<c-w><up>', '<c-w>+')
+keymap.set('n', '<c-w><down>', '<c-w>-')
+
+-- tree file explorer
+-- keymap.set('n', '<leader>e', ':nvimtreetoggle<cr>')
+
+-- center screen and move half a page up or down
+keymap.set('n', '<c-d>', '<c-d>zz')
+keymap.set('n', '<c-u>', '<c-u>zz')
+
+keymap.set('n', 'j', 'jzz')
+keymap.set('n', 'k', 'kzz')
+
+
+-- emmet shortcut
+vim.g.user_emmet_mode = 'n'
+vim.g.user_emmet_leader_key = ','
+
+-- keymap.set('n', '<leader>nt', '<plug>(emmet-next-edit-point)')
+-- keymap.set('n', '<leader>pv', '<plug>(emmet-prev-edit-point)')
+-- keymap.set('n', '<leader>k', '<plug>(emmet-expand-abbr)')
+-- keymap.set('i', '<c-y>,', '<plug>(emmet-expand-abbr)')
+-- keymap.set('n', '<leader>j', '<plug>(emmet-toggle-comment)')
