@@ -33,17 +33,19 @@ vim.cmd [[packadd packer.nvim]]
 -- list of plugins to install
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-  }
+
   -- statusline
   use 'nvim-lualine/lualine.nvim'
   -- bufferline
   use 'akinsho/nvim-bufferline.lua'
 
-  use 'nvim-lua/plenary.nvim' -- Common utilities
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.2',
+    -- or                            , branch = '0.1.x',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
+  use 'nvim-telescope/telescope-file-browser.nvim'
+
   -- file explorer
   -- use {
   --   'nvim-tree/nvim-tree.lua',
@@ -52,7 +54,7 @@ return packer.startup(function(use)
   --   },
   --   tag = 'nightly'
   -- }
-  use 'sainnhe/everforest' -- colorscheme
+  use 'sainnhe/everforest'
   use 'rmagatti/alternate-toggler'
 
   use {
@@ -72,28 +74,38 @@ return packer.startup(function(use)
 
   use 'kyazdani42/nvim-web-devicons'    -- File icons
 
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
   use 'MattesGroeger/vim-bookmarks'
   use 'tom-anders/telescope-vim-bookmarks.nvim'
 
-  -- autocompletion
-  use 'hrsh7th/cmp-buffer' -- source for text in buffer
-  use 'hrsh7th/cmp-path'   -- source for file system paths
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'onsails/lspkind-nvim'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'rafamadriz/friendly-snippets'
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
+    requires = {
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
-  -- configuring lsp servers
-  use 'hrsh7th/cmp-nvim-lsp' -- for autocompletion
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/cmp-nvim-lua' },
+
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
+    }
+  }
+
   use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use 'onsails/lspkind-nvim' -- vscode-like pictograms
+  use 'saadparwaiz1/cmp_luasnip'
   use 'jose-elias-alvarez/typescript.nvim'
 
-  use 'L3MON4D3/LuaSnip' -- snippet engine
-
-  -- style
   use 'xiyaowong/nvim-transparent'
   -- cmdline box (rm this plugin if you miss the default vim cmdline)
   -- use({
@@ -107,7 +119,6 @@ return packer.startup(function(use)
 
   -- formatting & linting
   use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jayp0521/mason-null-ls.nvim'
 
   -- commenting with gc
   use 'numToStr/Comment.nvim'
@@ -123,12 +134,13 @@ return packer.startup(function(use)
   })
   use 'norcalli/nvim-colorizer.lua'
   use 'manzeloth/live-server'
-  use 'mattn/emmet-vim'
+  -- use 'mattn/emmet-vim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'RRethy/vim-illuminate'
   use 'folke/zen-mode.nvim'
   use 'akinsho/toggleterm.nvim'
 
+  use 'ThePrimeagen/harpoon'
   use 'themaxmarchuk/tailwindcss-colors.nvim'
 
   if packer_bootstrap then
