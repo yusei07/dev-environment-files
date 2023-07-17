@@ -65,6 +65,8 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs'  -- autoclose parens, brackets, quotes, etc...
   use 'windwp/nvim-ts-autotag' -- autoclose tags
   use 'p00f/nvim-ts-rainbow'
+  use 'nvim-treesitter/nvim-treesitter-context'
+  use 'axelvc/template-string.nvim'
 
   use 'mg979/vim-visual-multi'
   use 'gcmt/wildfire.vim'
@@ -74,8 +76,8 @@ return packer.startup(function(use)
 
   use 'kyazdani42/nvim-web-devicons'    -- File icons
 
-  use 'MattesGroeger/vim-bookmarks'
-  use 'tom-anders/telescope-vim-bookmarks.nvim'
+  -- use 'MattesGroeger/vim-bookmarks'
+  -- use 'tom-anders/telescope-vim-bookmarks.nvim'
 
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -137,10 +139,11 @@ return packer.startup(function(use)
   -- use 'mattn/emmet-vim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'RRethy/vim-illuminate'
-  use 'folke/zen-mode.nvim'
+  -- use 'folke/zen-mode.nvim'
   use 'akinsho/toggleterm.nvim'
 
   use 'ThePrimeagen/harpoon'
+  -- use 'andweeb/presence.nvim'
   use 'themaxmarchuk/tailwindcss-colors.nvim'
 
   if packer_bootstrap then
