@@ -4,30 +4,34 @@ if (not status) then return end
 bufferline.setup({
   options = {
     mode = "tabs",
-    separator_style = 'slant',
+    separator_style = 'slope',
+    enforce_regular_tabs = true,
+    show_buffer_icons = false,
     always_show_bufferline = false,
     show_buffer_close_icons = false,
     show_close_icon = false,
-    color_icons = true
+    color_icons = false 
   },
   highlights = {
     separator = {
-      fg = '#313B41',
-      bg = '#39434d',
+      fg = '#3a454c',
+      bg = '#4d5860',
     },
     separator_selected = {
-      fg = '#313B41',
+      fg = '#3a454c',
+      bg = '#afbf87'
     },
     background = {
-      fg = '#657b83', -- unselected buffer color
-      bg = '#39434d' -- background color
+      fg = '#999f93', -- unselected buffer color
+      bg = '#4d5860' -- background color
     },
     buffer_selected = {
-      fg = '#C4CAC5',
+      fg = '#3a454c',
+      bg = '#afbf87',
       bold = true,
     },
     fill = {
-      bg = '#313B41'
+      bg = '#3a454c'
     }
   },
 })

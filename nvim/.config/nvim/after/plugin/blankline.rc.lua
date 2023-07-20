@@ -3,7 +3,7 @@ if (not status) then return end
 
 indent.setup {
   buftype_exclude = { "terminal" },
-  filetype_exclude = { "NvimTree", "packer", "lsp-installer", "python", "javascript", "css", "lua" },
+  filetype_exclude = { "NvimTree", "packer", "lsp-installer", "python", "javascript", "css", "lua", "c", "markdown" },
   space_char_blankline = " ",
   show_current_context = true,
   context_patterns = {

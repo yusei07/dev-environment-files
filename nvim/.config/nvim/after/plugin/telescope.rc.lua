@@ -9,6 +9,11 @@ end
 
 local fb_actions = require "telescope".extensions.file_browser.actions
 
+require('nvim-web-devicons').setup({
+  override = {},
+  default = true
+})
+
 telescope.setup {
   defaults = {
     mappings = {
@@ -74,5 +79,5 @@ vim.keymap.set("n", "sf", function()
     previewer = false,
     initial_mode = "normal",
     layout_config = { height = 32 }
-  })
+})
 end)
