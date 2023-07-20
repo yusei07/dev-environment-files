@@ -36,6 +36,7 @@ return packer.startup(function(use)
 
   -- statusline
   use 'nvim-lualine/lualine.nvim'
+
   -- bufferline
   use 'akinsho/nvim-bufferline.lua'
 
@@ -47,15 +48,11 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
 
   -- file explorer
-  -- use {
-  --   'nvim-tree/nvim-tree.lua',
-  --   requires = {
-  --     'nvim-tree/nvim-web-devicons',
-  --   },
-  --   tag = 'nightly'
-  -- }
-  use 'sainnhe/everforest'
-  use 'rmagatti/alternate-toggler'
+  use 'nvim-tree/nvim-tree.lua'
+  use 'nvim-tree/nvim-web-devicons'
+
+  use 'sainnhe/everforest' -- colorscheme
+  use 'rmagatti/alternate-toggler' -- toggle boolean value
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -64,8 +61,7 @@ return packer.startup(function(use)
   --  auto closing
   use 'windwp/nvim-autopairs'  -- autoclose parens, brackets, quotes, etc...
   use 'windwp/nvim-ts-autotag' -- autoclose tags
-  use 'p00f/nvim-ts-rainbow'
-  use 'nvim-treesitter/nvim-treesitter-context'
+
   use 'axelvc/template-string.nvim'
 
   use 'mg979/vim-visual-multi'
@@ -74,38 +70,29 @@ return packer.startup(function(use)
   use 'tpope/vim-surround'              -- add, del, change surrounding
   use 'vim-scripts/ReplaceWithRegister' -- replace with register contents using motion (gr + motion)
 
-  use 'kyazdani42/nvim-web-devicons'    -- File icons
+  -- autocompletion
+  use 'hrsh7th/nvim-cmp' -- completion plugin
+  use 'hrsh7th/cmp-buffer' -- source for text in buffer
+  use 'hrsh7th/cmp-path' -- source for file system paths
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-cmdline'
 
-  -- use 'MattesGroeger/vim-bookmarks'
-  -- use 'tom-anders/telescope-vim-bookmarks.nvim'
+  -- snippets
+  use 'L3MON4D3/LuaSnip' -- snippet engine
+  use 'saadparwaiz1/cmp_luasnip' -- for autocompletion
+  use 'rafamadriz/friendly-snippets' -- useful snippets
 
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v1.x',
-    requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
+  -- managing & installing lsp servers
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
 
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-cmdline' },
-      { 'hrsh7th/cmp-nvim-lua' },
+  -- configuring lsp servers
+  use 'neovim/nvim-lspconfig' -- easily configure language servers
+  use 'hrsh7th/cmp-nvim-lsp' -- for autocompletion
+  use 'glepnir/lspsaga.nvim'
 
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
-    }
-  }
 
-  use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
-  use 'saadparwaiz1/cmp_luasnip'
   use 'jose-elias-alvarez/typescript.nvim'
 
   use 'xiyaowong/nvim-transparent'
@@ -135,15 +122,11 @@ return packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
   use 'norcalli/nvim-colorizer.lua'
-  use 'manzeloth/live-server'
-  -- use 'mattn/emmet-vim'
+  use 'barrett-ruth/live-server.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'RRethy/vim-illuminate'
-  -- use 'folke/zen-mode.nvim'
   use 'akinsho/toggleterm.nvim'
-
   use 'ThePrimeagen/harpoon'
-  -- use 'andweeb/presence.nvim'
   use 'themaxmarchuk/tailwindcss-colors.nvim'
 
   if packer_bootstrap then
