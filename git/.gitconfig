@@ -1,6 +1,7 @@
 [user]
   username = Yusei07
-  email = usernamesaresoharddtomake@gmail.com
+	email = anak0020@student.monash.edu
+	name = anak0020
 [init] 
   defaultbranch = main
 [color]
@@ -34,3 +35,5 @@
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 local keymap = vim.keymap
 
-
 keymap.set('n', '<leader>pv', ':Ex<CR>')
 keymap.set('n', 'x', '"_x')
 
@@ -10,13 +9,13 @@ keymap.set('n', '+', '<c-a>')
 keymap.set('n', '-', '<c-x>')
 
 -- clear search highlights
-keymap.set("n", "<leader>no", ":nohl<CR>")
+keymap.set('n', '<leader>no', ':nohl<CR>')
 
 -- delete a word backwards
 keymap.set('n', 'dw', 'vb"_d')
 
 -- select all
-keymap.set('n', '<C-l>', 'ggVG')
+keymap.set('n', '<c-q>', 'ggVG')
 
 -- save with root permission (not working for now)
 --vim.api.nvim_create_user_command('w', 'w !sudo tee > /dev/null %', {})
@@ -44,7 +43,6 @@ keymap.set('n', '<c-w><down>', '<c-w>-')
 -- tree file explorer
 -- keymap.set('n', '<leader>e', ':nvimtreetoggle<cr>')
 
-
 -- center screen and move half a page up or down
 keymap.set('n', '<c-d>', '<c-d>zz')
 keymap.set('n', '<c-u>', '<c-u>zz')
@@ -52,14 +50,24 @@ keymap.set('n', '<c-u>', '<c-u>zz')
 keymap.set('n', 'j', 'jzz')
 keymap.set('n', 'k', 'kzz')
 
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
-keymap.set("n", "n", "nzzzv")
-keymap.set("n", "N", "Nzzzv")
+keymap.set('n', 'n', 'nzzzv')
+keymap.set('n', 'N', 'Nzzzv')
 
-keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap.set(
+  'n',
+  '<leader>s',
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
+keymap.set('n', '<leader>cn', ':%s/')
 
+-- live server shortcut
+keymap.set('n', '<leader>lv', ':LiveServerStart<CR>')
+
+-- tree toggle shortcut
+keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 
 -- emmet shortcut
 -- vim.g.user_emmet_mode = 'n'

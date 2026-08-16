@@ -16,9 +16,7 @@ function fish_greeting
 ⢀⣁⣸⣿⠀⢯⠗⠘⠁⠀⠀⢸⣷⡄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⢨⢠⣿⣿⠀⠀⠁⠀⠀⠀⣶⡏⢻⣧⡈⠑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 --------------
-ようこそ、ゆう
-
-" # welcome, yu
+ようこそ、ゆう" # welcome, yu
 end
 
 #if status is-interactive
@@ -113,6 +111,5 @@ if test -f $LOCAL_CONFIG
   source $LOCAL_CONFIG
 end
 fish_add_path /Users/nora./.spicetify
-
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/nora./.ghcup/bin # ghcup-env

@@ -1,5 +1,6 @@
 vim.cmd('autocmd!')
 
+vim.opt.clipboard = 'unnamedplus'
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -25,12 +26,12 @@ vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
-vim.opt.ai = true            -- Auto indent
-vim.opt.si = true            -- Smart indent
-vim.opt.wrap = false         -- No wrap lines
+vim.opt.ai = true -- Auto indent
+vim.opt.si = true -- Smart indent
+vim.opt.wrap = false -- No wrap lines
 vim.opt.backspace = 'start,eol,indent'
-vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
-vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.path:append({ '**' }) -- Finding files - Search down into subfolders
+vim.opt.wildignore:append({ '*/node_modules/*' })
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3"]])
@@ -38,13 +39,13 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 -- but this doesn't work on iTerm2
 
 -- Turn off past mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = '*',
-	command = "set nopaste"
+vim.api.nvim_create_autocmd('InsertLeave', {
+  pattern = '*',
+  command = 'set nopaste',
 })
 
 -- Add asterisks in block comments
-vim.opt.formatoptions:append { 'r' }
+vim.opt.formatoptions:append({ 'r' })
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -60,3 +61,12 @@ vim.opt.list = true
 
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = 'InchSearch',
+      timeout = 300,
+    })
+  end,
+})

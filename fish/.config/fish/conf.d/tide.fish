@@ -1,8 +1,8 @@
-set -g tide_git_bg_color afbf87 
+set -g tide_git_bg_color afbf87
 set -g tide_git_bg_color_unstable afbf87  # dbbc7f
-set -g tide_git_bg_color_urgent e66868 
+set -g tide_git_bg_color_urgent e66868
 set -g tide_git_branch_color 000000 
-set -g tide_git_color_branch 293136 
+set -g tide_git_color_branch 293136
 set -g tide_git_color_conflicted 000000
 set -g tide_git_color_dirty 000000
 set -g tide_git_color_operation 000000
@@ -18,4 +18,4 @@ set -g tide_git_staged_color 000000
 set -g tide_git_stash_color 000000
 set -g tide_git_untracked_color 000000
 set -g tide_git_upstream_color 000000
-set -g tide_pwd_bg_color 7fbbb3 
+set -g tide_pwd_bg_color 7fbbb3
