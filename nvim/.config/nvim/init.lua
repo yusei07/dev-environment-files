@@ -24,4 +24,8 @@ vim.opt.rtp:prepend(lazypath)
 require('base')
 require('keymap')
 require('neovide')
-require('lazy').setup('plugins')
+require('lazy').setup('plugins', {
+  git = {
+    url_format = 'https://github.com/%s.git',
+  },
+})
