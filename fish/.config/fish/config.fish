@@ -116,3 +116,10 @@ fish_add_path /Users/nora./.spicetify
 
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/nora./.ghcup/bin # ghcup-env
+
+# pnpm
+set -gx PNPM_HOME "/Users/nora./Library/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
