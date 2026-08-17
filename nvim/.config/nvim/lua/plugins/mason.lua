@@ -29,6 +29,7 @@ return {
         -- 'c-language-server',
         'pylsp',
         'emmet_ls',
+        'graphql-language-service-cli', -- add this
       },
     })
   end,
