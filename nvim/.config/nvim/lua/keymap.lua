@@ -78,3 +78,11 @@ keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 -- keymap.set('n', '<leader>k', '<plug>(emmet-expand-abbr)')
 -- keymap.set('i', '<c-y>,', '<plug>(emmet-expand-abbr)')
 -- keymap.set('n', '<leader>j', '<plug>(emmet-toggle-comment)')
+
+-- move between tabs
+for i = 1, 9 do
+  keymap.set('n', '<leader>' .. i, i .. 'gt', { desc = 'Go to tab ' .. i })
+end
+-- etc, or more simply:
+keymap.set('n', '<tab>', 'gt')
+keymap.set('n', '<s-tab>', 'gT')
