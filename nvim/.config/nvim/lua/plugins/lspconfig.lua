@@ -29,6 +29,11 @@ return {
     vim.lsp.config('sourcekit', {
       cmd = { 'sourcekit-lsp' },
       filetypes = { 'swift' },
+      root_dir = function(bufnr, on_dir)
+        local root =
+          vim.fs.root(bufnr, { 'buildServer.json', 'Package.swift', '.git' })
+        on_dir(root)
+      end,
     })
 
     vim.lsp.enable({
@@ -41,6 +46,7 @@ return {
       'cssls',
       'pylsp',
       'emmet_ls',
+      'sourcekit',
     })
   end,
 }

@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
+    branch = 'main',
     event = { 'BufReadPre', 'BufNewFile' },
     build = ':TSUpdate',
     dependencies = {
@@ -25,11 +25,12 @@ return {
           'prisma',
           'markdown',
           'markdown_inline',
+          'swift',
         },
 
         sync_install = false,
 
-        auto_install = true,
+        auto_install = false, -- disables installation on every new file I open
 
         highlight = {
           enable = true,
