@@ -14,6 +14,8 @@ alias ll="eza -lah --icons=always --git"
 alias lt="eza --tree --level=2 --icons=always"
 alias g git
 
+alias refish "source config-osx.fish"
+
 # Shutdown timer shortcut
 function gn
   set -l time_input $argv[1]
