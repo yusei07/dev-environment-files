@@ -58,7 +58,7 @@ end
 alias py python3
 
 # bpytop exe cmd
-alias btop bpytop
+#alias btop bpytop
 
 # lazygit exe cmd
 alias lgit lazygit
@@ -90,14 +90,18 @@ set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
 # NVM
-function __check_rvm --on-variable PWD --description 'Do nvm stuff'
-  status --is-command-substitution; and return
-
-  if test -f .nvmrc; and test -r .nvmrc;
+if type -q nvm
     nvm use
-  else
-  end
 end
+
+#function __check_rvm --on-variable PWD --description 'Do nvm stuff'
+#  status --is-command-substitution; and return
+
+#  if test -f .nvmrc; and test -r .nvmrc;
+#    nvm use
+#  else
+#  end
+#end
 
 switch (uname)
   case Darwin
@@ -112,7 +116,6 @@ set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
   source $LOCAL_CONFIG
 end
-fish_add_path /Users/nora./.spicetify
 
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/nora./.ghcup/bin # ghcup-env
