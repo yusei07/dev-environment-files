@@ -2,61 +2,39 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
-    event = { 'BufReadPre', 'BufNewFile' },
+    lazy = false,
     build = ':TSUpdate',
     dependencies = {
       'windwp/nvim-ts-autotag',
       'axelvc/template-string.nvim',
     },
     config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          'tsx',
-          'lua',
-          'vim',
-          'typescript',
-          'javascript',
-          'html',
-          'css',
-          'json',
-          'graphql',
-          'regex',
-          'rust',
-          'prisma',
-          'markdown',
-          'markdown_inline',
-          'swift',
-        },
+      require('nvim-treesitter').setup()
 
-        sync_install = false,
-
-        auto_install = false, -- disables installation on every new file I open
-
-        highlight = {
-          enable = true,
-
-          additional_vim_regex_highlighting = false,
-        },
-        autotag = {
-          enable = true,
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<enter>',
-            node_incremental = '<enter>',
-            scope_incremental = false,
-            node_decremental = '<bs>',
-          },
-        },
+      require('nvim-treesitter').install({
+        'tsx', 'lua', 'vim', 'vimdoc', 'typescript', 'javascript',
+        'html', 'css', 'json', 'graphql', 'regex', 'rust',
+        'prisma', 'markdown', 'markdown_inline', 'swift',
       })
 
+      -- highlighting + indent, per buffer
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+          if lang and vim.treesitter.language.add(lang) then
+            vim.treesitter.start(args.buf, lang)
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
+
+      require('nvim-ts-autotag').setup({})
       require('template-string').setup({})
 
       -- fold
       local opt = vim.opt
       opt.foldmethod = 'expr'
-      opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
       opt.foldenable = false
     end,
   },
