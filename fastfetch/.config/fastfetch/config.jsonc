@@ -1,0 +1,130 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+  // ── everforest palette (truecolor) ───────────────────────────
+  //   green   38;2;167;192;128   #a7c080   system keys
+  //   aqua    38;2;131;192;146   #83c092   title / accent
+  //   blue    38;2;127;187;179   #7fbbb3   host
+  //   yellow  38;2;219;188;127   #dbbc7f   hardware keys
+  //   orange  38;2;230;152;117   #e69875
+  //   red     38;2;230;126;128   #e67e80
+  //   grey    38;2;133;146;137   #859289   frames / dim text
+  // ─────────────────────────────────────────────────────────────
+
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/ascii.txt",
+    "padding": {
+      "top": 2,
+      "left": 2,
+      "right": 4
+    }
+  },
+
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "38;2;167;192;128",
+      "title": "38;2;131;192;146"
+    },
+
+    // how the % readout renders: colored number + a monochrome bar
+    // (monochrome = it uses the bar colors below instead of the
+    //  default green/yellow/red "warning" gradient)
+    "percent": {
+      "type": ["num", "bar", "bar-monochrome"],
+      "color": {
+        "green":  "38;2;167;192;128",
+        "yellow": "38;2;219;188;127",
+        "red":    "38;2;230;126;128"
+      }
+    },
+
+    // the little progress bars for Memory / Disk
+    // if a bar ever shows up uncolored, swap the truecolor codes
+    // below for named colors, e.g. "green" and "black"
+    "bar": {
+      "char": {
+        "elapsed": "━",
+        "total":   "─"
+      },
+      "color": {
+        "elapsed": "38;2;167;192;128",
+        "total":   "38;2;133;146;137"
+      },
+      "width": 12,
+      "border": {
+        "left": "",
+        "right": ""
+      }
+    }
+  },
+
+  "modules": [
+    {
+      "type": "title",
+      "color": {
+        "user": "38;2;131;192;146",
+        "at":   "38;2;133;146;137",
+        "host": "38;2;127;187;179"
+      }
+    },
+    {
+      "type": "datetime",
+      "key": "",
+      "keyColor": "38;2;133;146;137",
+      "format": "\u001b[38;2;133;146;137m{weekday}, {day-in-month} {month-name}  {hour}:{minute-pretty}\u001b[0m"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[38;2;133;146;137m╭──────────────────────────────────╮\u001b[0m"
+    },
+    "break",
+
+    {
+      "type": "custom",
+      "format": "\u001b[38;2;167;192;128m▍\u001b[1m system \u001b[0m\u001b[38;2;133;146;137m─────────────────────────\u001b[0m"
+    },
+    { "type": "os",       "key": "  OS",       "keyColor": "38;2;167;192;128" },
+    { "type": "kernel",   "key": "  Kernel",   "keyColor": "38;2;167;192;128" },
+    { "type": "uptime",   "key": "  Uptime",   "keyColor": "38;2;167;192;128" },
+    { "type": "packages", "key": "󰏖  Packages", "keyColor": "38;2;167;192;128" },
+    { "type": "shell",    "key": "  Shell",    "keyColor": "38;2;167;192;128" },
+    { "type": "wm",       "key": "  WM",       "keyColor": "38;2;167;192;128" },
+    { "type": "terminal", "key": "  Terminal", "keyColor": "38;2;167;192;128" },
+    { "type": "terminalfont", "key": "  Font", "keyColor": "38;2;167;192;128" },
+    "break",
+
+    {
+      "type": "custom",
+      "format": "\u001b[38;2;219;188;127m▍\u001b[1m hardware \u001b[0m\u001b[38;2;133;146;137m───────────────────────\u001b[0m"
+    },
+    { "type": "cpu", "key": "  CPU", "keyColor": "38;2;219;188;127" },
+    { "type": "gpu", "key": "󰢮  GPU", "keyColor": "38;2;219;188;127" },
+    {
+      "type": "memory",
+      "key": "  Memory",
+      "keyColor": "38;2;219;188;127",
+      "format": "{used} / {total}  {percentage-bar} {percentage}",
+      "percent": { "green": 80, "yellow": 92 }
+    },
+    {
+      "type": "disk",
+      "key": "󰋊  Disk",
+      "keyColor": "38;2;219;188;127",
+      "format": "{size-used} / {size-total}  {size-percentage-bar} {size-percentage}",
+      "percent": { "green": 85, "yellow": 95 }
+    },
+    "break",
+
+    {
+      "type": "custom",
+      "format": "\u001b[38;2;133;146;137m╰──────────────────────────────────╯\u001b[0m"
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
+  ]
+}
