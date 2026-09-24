@@ -1,24 +1,10 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/yubokee/.docker/bin"
+# End of Docker Desktop section.
+
 # greeting
 function fish_greeting
-  echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⢀⣄⠠⠄⠄⣀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⡀⠀⠁⠀⠀⠀⠈⠣⡶⠠⠁⢈⠂⢄⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢀⠞⠁⠀⠀⠀⠀⢀⡀⠀⠈⢖⢂⠤⡈⠀⢕⢄⠀⠀⠀
-⠀⠀⠀⠀⢠⢁⢴⠃⠀⢀⣤⠖⠁⠀⢀⠔⠉⠀⢁⠀⠑⠀⢙⢦⠀⠀
-⠀⠀⠀⠀⡾⣡⠃⢰⢈⠞⢓⢀⠆⢀⠆⠀⡆⠘⡀⡗⢆⡗⢅⡈⢆⠀
-⠀⠀⠀⢠⡕⠇⠀⣇⠶⢠⣣⢊⢠⠃⠀⢸⠀⠀⠀⡇⢲⠫⡇⠇⡈⡆
-⠀⠀⠀⠈⠱⣠⡇⠇⠒⣾⢡⠾⢸⠀⢀⠆⠀⠀⢄⣿⢸⠀⣱⡃⣅⡇
-⠀⠀⠀⠀⢤⣇⢸⡆⢰⣿⣷⣒⣧⢧⡜⣠⡞⣼⣮⣿⡇⣰⣥⣧⢹⠇
-⠀⠀⠀⠀⠈⢿⣖⢇⣾⡍⠛⠃⠈⣼⠿⢻⠟⠿⠇⣹⣿⣿⢻⠇⠈⠀
-⠀⠀⠀⠀⠀⠀⢙⣿⣗⢽⣗⠤⠘⠁⠐⡁⠀⠤⣾⣿⣿⣿⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢀⠞⠉⠀⠈⠉⢳⠦⠤⠬⠁⢒⣾⣿⣿⡟⡏⠀⠀⠀⠀
-⠀⠀⠀⢀⡰⠁⠀⠀⠀⠀⠀⠈⣧⣀⠄⠚⢿⠿⠋⠘⠀⠀⠀⠀⠀⠀
-⠀⠠⠂⣵⠁⣠⣿⡿⡆⠀⠀⠀⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⢀⣁⣸⣿⠀⢯⠗⠘⠁⠀⠀⢸⣷⡄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⢨⢠⣿⣿⠀⠀⠁⠀⠀⠀⣶⡏⢻⣧⡈⠑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
---------------
-ようこそ、ゆう
-
-" # welcome, yu
+  fastfetch
 end
 
 #if status is-interactive
@@ -68,6 +54,9 @@ alias refmux "tmux source ~/.config/tmux/tmux.conf"
 
 # neofetch logo
 alias nf "neofetch --ascii ~/.config/neofetch/angel-ramiel-evangelion.txt"
+
+# fast fetch
+#
 #alias nf "neofetch --w3m ~/.config/neofetch/ramiel.png" (note: to display an image u need to use the escape sequence (iterm))
 #https://github.com/dylanaraps/neofetch/wiki/Images-in-the-terminal
 
