@@ -1,8 +1,5 @@
 return {
   'nvimdev/lspsaga.nvim',
-  dependencies = {
-    'simrat39/rust-tools.nvim',
-  },
   config = function()
     local keymap = vim.keymap
 
@@ -37,18 +34,12 @@ return {
       end,
     })
 
-    -- for crates.nvim
     local function show_documentation()
       local filetype = vim.bo.filetype
       if vim.tbl_contains({ 'vim', 'help' }, filetype) then
         vim.cmd('h ' .. vim.fn.expand '<cword>')
       elseif vim.tbl_contains({ 'man' }, filetype) then
         vim.cmd('Man ' .. vim.fn.expand '<cword>')
-      elseif
-        vim.fn.expand '%:t' == 'Cargo.toml'
-        and require('crates').popup_available()
-      then
-        require('crates').show_popup()
       else
         vim.cmd 'Lspsaga hover_doc'
       end
@@ -56,31 +47,35 @@ return {
 
     vim.keymap.set('n', '<space>k', show_documentation, { silent = true })
 
+    -- show the full diagnostic message under the cursor in a popup
+    vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
+
     -- error lens
-    vim.fn.sign_define {
-      {
-        name = 'DiagnosticSignError',
-        text = '',
-        texthl = 'DiagnosticSignError',
-        linehl = 'ErrorLine',
+    local severity = vim.diagnostic.severity
+    vim.diagnostic.config {
+      -- inline error messages (off by default since nvim 0.11)
+      virtual_text = {
+        spacing = 4,
+        prefix = '●',
       },
-      {
-        name = 'DiagnosticSignWarn',
-        text = '',
-        texthl = 'DiagnosticSignWarn',
-        linehl = 'WarningLine',
+      severity_sort = true,
+      float = {
+        border = 'rounded',
+        source = true,
       },
-      {
-        name = 'DiagnosticSignInfo',
-        text = '',
-        texthl = 'DiagnosticSignInfo',
-        linehl = 'InfoLine',
-      },
-      {
-        name = 'DiagnosticSignHint',
-        text = '',
-        texthl = 'DiagnosticSignHint',
-        linehl = 'HintLine',
+      signs = {
+        text = {
+          [severity.ERROR] = '',
+          [severity.WARN] = '',
+          [severity.INFO] = '',
+          [severity.HINT] = '',
+        },
+        linehl = {
+          [severity.ERROR] = 'ErrorLine',
+          [severity.WARN] = 'WarningLine',
+          [severity.INFO] = 'InfoLine',
+          [severity.HINT] = 'HintLine',
+        },
       },
     }
   end,
