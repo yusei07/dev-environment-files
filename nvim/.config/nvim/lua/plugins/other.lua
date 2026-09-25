@@ -1,6 +1,6 @@
 return {
   {
-    'echasnovski/mini.indentscope',
+    'nvim-mini/mini.indentscope',
     opts = {},
   },
   'mg979/vim-visual-multi',
@@ -9,6 +9,16 @@ return {
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
+    opts = {},
+  },
+  {
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
     opts = {},
   },
   {
