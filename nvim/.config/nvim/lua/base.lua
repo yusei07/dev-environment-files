@@ -1,5 +1,3 @@
-vim.cmd('autocmd!')
-
 vim.opt.clipboard = 'unnamedplus'
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
@@ -64,8 +62,8 @@ vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank({
-      higroup = 'InchSearch',
+    vim.hl.on_yank({
+      higroup = 'IncSearch',
       timeout = 300,
     })
   end,
