@@ -1,6 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.4',
+  branch = 'master',
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     local builtin = require('telescope.builtin')
@@ -26,16 +26,16 @@ return {
         },
         dynamic_preview_title = true,
         path_display = { 'smart' },
+        layout_config = {
+          horizontal = {
+            preview_cutoff = 100,
+            preview_width = 0.5,
+          },
+        },
       },
       pickers = {
         find_files = {
           hidden = true,
-        },
-      },
-      layout_config = {
-        horizontal = {
-          preview_cutoff = 100,
-          preview_width = 0.5,
         },
       },
     })
