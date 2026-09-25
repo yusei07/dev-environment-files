@@ -20,7 +20,17 @@ return {
     vim.lsp.config('tailwindcss', {})
     vim.lsp.config('ts_ls', {})
     vim.lsp.config('cssls', {})
-    vim.lsp.config('pylsp', {})
+    vim.lsp.config('pylsp', {
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              ignore = { 'E501' }, -- line too long
+            },
+          },
+        },
+      },
+    })
 
     vim.lsp.config('emmet_ls', {
       filetypes = { 'html', 'css', 'javascriptreact', 'typescriptreact' },
