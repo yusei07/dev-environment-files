@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+
+# See: https://felixkratz.github.io/SketchyBar/config/bar
+
+source "$CONFIG_DIR/colors.sh"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+FONT="JetBrainsMono Nerd Font"
+APP_FONT="sketchybar-app-font:Regular:13.0"
+
+##### Bar #####
+sketchybar --bar position=top \
+                 height=37 \
+                 color=$TRANSPARENT \
+                 blur_radius=0 \
+                 padding_left=8 \
+                 padding_right=8 \
+                 topmost=off \
+                 sticky=on
+
+##### Defaults #####
+sketchybar --default updates=when_shown \
+                     icon.font="$FONT:Medium:13.0" \
+                     icon.color=$GREY \
+                     label.font="$FONT:Medium:12.0" \
+                     label.color=$FG \
+                     padding_left=3 \
+                     padding_right=3 \
+                     icon.padding_left=7 \
+                     icon.padding_right=3 \
+                     label.padding_left=3 \
+                     label.padding_right=7 \
+                     background.color=$ITEM_BG \
+                     background.border_color=$BORDER \
+                     background.border_width=1 \
+                     background.corner_radius=3 \
+                     background.height=22
+
+##### Left: AeroSpace workspaces #####
+# `aerospace_workspace_change` is fired from aerospace.toml (exec-on-workspace-change / on-focus-changed).
+sketchybar --add event aerospace_workspace_change
+
+# At login sketchybar can start before AeroSpace is ready; wait up to 10s for it,
+# otherwise the workspace list comes back empty and no workspace pills appear.
+for _ in $(seq 20); do
+  aerospace list-workspaces --focused >/dev/null 2>&1 && break
+  sleep 0.5
+done
+
+source "$PLUGIN_DIR/workspaces.sh"
+WORKSPACES="$(workspace_ids | tr '\n' ' ')"
+for sid in $WORKSPACES; do
+  sketchybar --add item space.$sid left \
+             --set space.$sid drawing=off \
+                              icon="$sid" \
+                              icon.padding_left=7 \
+                              icon.padding_right=3 \
+                              label.font="$APP_FONT" \
+                              label.y_offset=-1 \
+                              label.padding_right=7 \
+                              click_script="aerospace workspace $sid"
+done
+
+# A single hidden controller refreshes every workspace item in one pass,
+# instead of each item running its own script on every event.
+sketchybar --add item aerospace_ctl left \
+           --set aerospace_ctl drawing=off \
+                               updates=on \
+                               script="$PLUGIN_DIR/aerospace.sh '$WORKSPACES'" \
+           --subscribe aerospace_ctl aerospace_workspace_change \
+                                     display_change \
+                                     system_woke
+
+##### Left: focused app #####
+sketchybar --add item front_app left \
+           --set front_app icon.font="$APP_FONT" \
+                           icon.color=$GREY \
+                           label.color=$FG \
+                           background.drawing=off \
+                           padding_left=8 \
+                           script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+##### Right (added right-to-left) #####
+sketchybar --add item clock right \
+           --set clock update_freq=10 \
+                       icon=󰃰 \
+                       script="$PLUGIN_DIR/clock.sh" \
+                       click_script="open -a Calendar" \
+           --subscribe clock system_woke
+
+sketchybar --add item battery right \
+           --set battery update_freq=120 \
+                         script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery power_source_change system_woke
+
+sketchybar --add item cpu right \
+           --set cpu update_freq=3 \
+                     icon=󰍛 \
+                     script="$PLUGIN_DIR/cpu.sh" \
+                     click_script="open -a 'Activity Monitor'"
+
+# Spotify posts a distributed notification whenever playback changes.
+sketchybar --add event spotify_change com.spotify.client.PlaybackStateChanged \
+           --add item spotify right \
+           --set spotify drawing=off \
+                         updates=on \
+                         icon=:spotify: \
+                         icon.font="$APP_FONT" \
+                         label.max_chars=40 \
+                         scroll_texts=on \
+                         script="$PLUGIN_DIR/spotify.sh" \
+                         click_script="osascript -e 'tell application \"Spotify\" to playpause'" \
+           --subscribe spotify spotify_change system_woke
+
+##### Finish #####
+sketchybar --update
