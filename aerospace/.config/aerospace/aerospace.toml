@@ -41,7 +41,27 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = "move-mouse window-lazy-center"
+# [sketchybar] CHANGED (2026-09-24): was `on-focus-changed = "move-mouse window-lazy-center"`.
+# Turned into a list so it also pings sketchybar whenever focus changes.
+# Why: AeroSpace has no callback for a window opening, closing, or being moved
+# to another workspace — but all of those change focus, so this is how the
+# app icons on the bar's workspace items stay up to date.
+# To undo: put back the original single-line value above.
+on-focus-changed = [
+    'move-mouse window-lazy-center',
+    'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change',
+]
+
+# [sketchybar] ADDED (2026-09-24): tells sketchybar the moment you switch workspace,
+# passing the new and previous workspace names, so the bar can move the green
+# highlight instantly without asking AeroSpace anything first. The event `aerospace_workspace_change` is declared in
+# ~/.config/sketchybar/sketchybarrc and handled by plugins/aerospace.sh.
+# Full path to sketchybar is used because AeroSpace's PATH may not include Homebrew.
+# To undo: delete this block (the bar's workspace highlight will then go stale).
+# See: https://nikitabobko.github.io/AeroSpace/guide#exec-on-workspace-change-callback
+exec-on-workspace-change = ['/bin/bash', '-c',
+    '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+]
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -55,7 +75,14 @@ inner.horizontal =8
 inner.vertical =  8
 outer.left =      8
 outer.bottom =    8
-outer.top =       8
+# [sketchybar] CHANGED (2026-09-24): was `outer.top = 8`.
+# Built-in (notched) display: macOS already reserves a 32px strip for the notch,
+# and gaps are measured from below it. Bar is 37px, so 13 = (37 - 32) + 8px gap.
+# Any other monitor (no notch): 45 = 37px sketchybar height + 8px gap.
+# Either way, windows end up with the same 8px gap under the bar as on the sides.
+# If you change `height=` in sketchybarrc, update to (height - 32 + 8) and (height + 8).
+# If you stop using sketchybar, set this back to 8.
+outer.top =       [{ monitor."built-in" = 13 }, 45]
 outer.right =     8
 
 # 'main' binding mode declaration
